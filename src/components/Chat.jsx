@@ -49,15 +49,25 @@ const Chat = () => {
 
     socket.emit("sendMessage", { message, params });
     setMessage("");
+
+    if (params.name === message.sender) {
+      scrollToBottom();
+    }
   };
   const onEmojiClick = ({ emoji }) => {
     setMessage(`${message} ${emoji}`);
+  };
+  const scrollToBottom = () => {
+    const messagesContainer = document.getElementById("messages-container");
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
   };
 
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
-        <div className={styles.title}>{params.room}</div>
+        <div className={styles.title}>room {params.room}</div>
         <div className={styles.users}>{users} users in this room</div>
         <button className={styles.left} onClick={leftRoom}>
           Left the room
@@ -73,7 +83,7 @@ const Chat = () => {
             type="text"
             name="message"
             value={message}
-            placeholder="What do you want to say?"
+            placeholder="Write a message..."
             onChange={handleChange}
             autoComplete="off"
             required
@@ -83,13 +93,13 @@ const Chat = () => {
           <img src={icon} alt="icon" onClick={() => setOpen(!isOpen)} />
           {isOpen && (
             <div className={styles.emojies}>
-              <EmojiPicker onEmojiClick={onEmojiClick} />
+              <EmojiPicker width={250} onEmojiClick={onEmojiClick} />
             </div>
           )}
         </div>
 
         <div className={styles.button}>
-          <input type="submit" value="Send a message" onSubmit={handleSubmit} />
+          <input type="submit" value="Send" onSubmit={handleSubmit} />
         </div>
       </form>
     </div>

@@ -2,20 +2,21 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   color: #fff;
   padding: 15px 0;
 }
 
 .header {
   width: 100%;
-  color: #fff;
   background: #333;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  color: #fff;
+  gap: 4px;
 }
 
 .title {
@@ -29,7 +30,6 @@
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
-
 .left {
   background: rgb(253, 73, 73);
   border-radius: 6px;
@@ -38,31 +38,33 @@
   color: #fff;
   cursor: pointer;
 }
-
 .form {
-  color: #fff;
   width: 100%;
+  background: rgb(51, 51, 51);
   display: flex;
   align-items: center;
-  background: rgb(51, 51, 51);
   justify-content: space-between;
-  height: 80px;
   padding: 0 20px;
+  color: #fff;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
 
 .input {
-  flex-grow: 1;
-  height: 100%;
+  flex-grow: 1; /* Занимает все доступное пространство */
 }
 
 .input input {
   width: 100%;
-  height: 100%;
-  color: #fff;
+  height: 80px; /* Пример фиксированной высоты, можно настроить по вашему вкусу */
   font-size: 18px;
   font-weight: 500;
+  color: #fff;
+  padding: 10px; /* Добавляем внутренний отступ для лучшего визуального восприятия */
+
+  /* Свойства для переноса слов */
+  overflow-wrap: break-word; /* Стандартное свойство, поддерживаемое всеми браузерами */
+  word-wrap: break-word; /* Дополнительное свойство для поддержки старых версий IE */
 }
 
 .button {
@@ -75,15 +77,23 @@
 }
 
 .messages {
-  flex-grow: 1;
+  flex-grow: 1; /* Занимает все оставшееся пространство */
   width: 100%;
   color: #fff;
   font-size: 18px;
   background: rgb(35, 35, 35);
   padding: 32px;
+  overflow-y: auto; /* Вертикальная прокрутка */
+  scrollbar-width: thin; /* Тонкий скроллбар для Firefox */
+  scrollbar-color: #888 #333;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .emoji {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   cursor: pointer;
   position: relative;
@@ -92,10 +102,69 @@
 .emoji img {
   vertical-align: middle;
 }
-
 .emojies {
   position: absolute;
-  left: 50%;
+  left: -300%;
   transform: translateX(-50%);
-  bottom: 100%;
+  bottom: 200%;
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 18px;
+    height: 50px;
+  }
+  .messages {
+    padding: 16px;
+  }
+
+  .header {
+    padding: 0 10px;
+  }
+
+  .form {
+    padding: 0 10px;
+  }
+
+  .input input {
+    height: 60px;
+  }
+
+  .emojies {
+    max-width: 250px; /* Уменьшаем максимальную ширину для более узких экранов */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wrap {
+    padding: 2px 0;
+  }
+
+  .title {
+    font-size: 16px;
+    height: 40px;
+  }
+  .messages {
+    padding: 8px;
+  }
+
+  .header {
+    padding: 0 5px;
+  }
+
+  .left {
+    padding: 2px;
+  }
+
+  .form {
+    padding: 0 5px;
+  }
+
+  .input input {
+    height: 50px;
+  }
+  .emojies {
+    max-width: 200px; /* Дополнительно уменьшаем максимальную ширину для мобильных устройств */
+  }
 }

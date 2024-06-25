@@ -1,14 +1,12 @@
 .messages {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  gap: 20px;
 }
 
 .message {
-  width: max-content;
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
   width: 100%;
 }
 
@@ -17,14 +15,14 @@
   border-radius: 12px;
   font-size: 15px;
   color: #fff;
+  word-wrap: break-word; /* Переносим слова внутри текста */
+  overflow-wrap: break-word; /* Добавлено для поддержки старых версий IE */
+  max-width: 100%; /* Сообщение не будет превышать ширину контейнера */
 }
 
 .user {
   font-size: 14px;
   color: rgb(176, 176, 176);
-}
-
-.user {
   align-items: flex-start;
 }
 

@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "../styles/Messages.module.css";
 
 const Messages = ({ messages, name }) => {
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messages.length > 0 && messagesEndRef.current) {
+      const lastMessage = messages[messages.length - 1];
+      const itIsMe =
+        lastMessage.user.name.trim().toLowerCase() ===
+        name.trim().toLowerCase();
+      if (itIsMe) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [messages, name]);
+
   return (
     <div className={styles.messages}>
       {messages.map(({ user, message }, index) => {
@@ -16,6 +30,7 @@ const Messages = ({ messages, name }) => {
           </div>
         );
       })}
+      <div ref={messagesEndRef}></div> {/* Реф для прокрутки */}
     </div>
   );
 };
