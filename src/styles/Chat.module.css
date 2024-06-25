@@ -30,6 +30,7 @@
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
+
 .left {
   background: rgb(253, 73, 73);
   border-radius: 6px;
@@ -38,35 +39,49 @@
   color: #fff;
   cursor: pointer;
 }
+
 .form {
   width: 100%;
   background: rgb(51, 51, 51);
   display: flex;
+
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
+  padding: 10px;
   color: #fff;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  max-height: 200px;
 }
 
 .input {
   flex-grow: 1;
+  position: relative;
+  width: 100%;
 }
 
-.input input {
+.textarea {
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   font-size: 18px;
   font-weight: 500;
   color: #fff;
   padding: 10px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  resize: none;
+  background-color: transparent;
+  border: none;
+  overflow-y: auto;
+  border-radius: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #333;
+}
+
+.textarea:focus {
+  outline: none; /* Убираем фокусировку */
 }
 
 .button {
   text-align: center;
+  margin-top: 10px; /* Добавили отступ между инпутом и кнопкой */
 }
 
 .button input {
@@ -100,6 +115,7 @@
 .emoji img {
   vertical-align: middle;
 }
+
 .emojies {
   position: absolute;
   left: -300%;
@@ -113,6 +129,7 @@
     font-size: 18px;
     height: 50px;
   }
+
   .messages {
     padding: 16px;
   }
@@ -122,10 +139,10 @@
   }
 
   .form {
-    padding: 0 10px;
+    padding: 10px;
   }
 
-  .input input {
+  .input .textarea {
     height: 60px;
   }
 
@@ -143,6 +160,7 @@
     font-size: 16px;
     height: 40px;
   }
+
   .messages {
     padding: 8px;
   }
@@ -156,12 +174,13 @@
   }
 
   .form {
-    padding: 0 5px;
+    padding: 5px;
   }
 
-  .input input {
+  .input .textarea {
     height: 50px;
   }
+
   .emojies {
     max-width: 200px;
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Chat.module.css";
@@ -16,6 +16,7 @@ const Chat = () => {
   const [isOpen, setOpen] = useState(false);
   const [users, setUsers] = useState(0);
   const navigate = useNavigate();
+  const inputRef = useRef(null); // Создаем useRef для инпута
 
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
@@ -42,6 +43,7 @@ const Chat = () => {
   };
   const handleChange = ({ target: { value } }) => {
     setMessage(value);
+    inputRef.current.scrollTop = inputRef.current.scrollHeight;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +54,7 @@ const Chat = () => {
   };
   const onEmojiClick = ({ emoji }) => {
     setMessage(`${message} ${emoji}`);
+    inputRef.current.scrollTop = inputRef.current.scrollHeight;
   };
 
   return (
@@ -69,12 +72,12 @@ const Chat = () => {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.input}>
-          <input
-            type="text"
-            name="message"
+          <textarea
+            className={styles.textarea}
+            ref={inputRef}
             value={message}
-            placeholder="Write a message..."
             onChange={handleChange}
+            placeholder="Write a message..."
             autoComplete="off"
             required
           />
