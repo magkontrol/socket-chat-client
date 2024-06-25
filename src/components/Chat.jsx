@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Chat.module.css";
-import icon from "../images/emoji.svg";
+import iconSmile from "../images/smile.svg";
+import iconSend from "../images/send.svg";
 import EmojiPicker from "emoji-picker-react";
 import Messages from "./Messages";
 
@@ -43,7 +44,10 @@ const Chat = () => {
   };
   const handleChange = ({ target: { value } }) => {
     setMessage(value);
+    inputRef.current.style.height = "auto";
+    inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
     inputRef.current.scrollTop = inputRef.current.scrollHeight;
+    inputRef.current.focus();
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,10 +55,14 @@ const Chat = () => {
 
     socket.emit("sendMessage", { message, params });
     setMessage("");
+    inputRef.current.focus();
   };
   const onEmojiClick = ({ emoji }) => {
     setMessage(`${message} ${emoji}`);
+    inputRef.current.style.height = "auto";
+    inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
     inputRef.current.scrollTop = inputRef.current.scrollHeight;
+    inputRef.current.focus();
   };
 
   return (
@@ -71,28 +79,37 @@ const Chat = () => {
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.input}>
-          <textarea
-            className={styles.textarea}
-            ref={inputRef}
-            value={message}
-            onChange={handleChange}
-            placeholder="Write a message..."
-            autoComplete="off"
-            required
-          />
-        </div>
-        <div className={styles.emoji}>
-          <img src={icon} alt="icon" onClick={() => setOpen(!isOpen)} />
-          {isOpen && (
-            <div className={styles.emojies}>
-              <EmojiPicker width={250} onEmojiClick={onEmojiClick} />
-            </div>
-          )}
-        </div>
+        <textarea
+          className={styles.textarea}
+          ref={inputRef}
+          value={message}
+          onChange={handleChange}
+          placeholder="Write a message..."
+          autoComplete="off"
+          required
+        />
 
-        <div className={styles.button}>
-          <input type="submit" value="Send" onSubmit={handleSubmit} />
+        <div className={styles.container}>
+          <div className={styles.emoji}>
+            <img
+              src={iconSmile}
+              alt="icon-smile"
+              onClick={() => setOpen(!isOpen)}
+            />
+            {isOpen && (
+              <div className={styles.emojies}>
+                <EmojiPicker width={250} onEmojiClick={onEmojiClick} />
+              </div>
+            )}
+          </div>
+
+          <button
+            className={styles.button}
+            type="submit"
+            onSubmit={handleSubmit}
+          >
+            <img className={styles.send} src={iconSend} alt="icon-send" />
+          </button>
         </div>
       </form>
     </div>
