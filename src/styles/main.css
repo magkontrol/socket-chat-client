@@ -53,35 +53,33 @@ li {
 }
 
 .container {
-  width: 100%; /* Ширина 100%, чтобы была адаптивность */
-  max-width: 1240px; /* Максимальная ширина контейнера */
-  margin: 0 auto; /* Центрирование контейнера по горизонтали */
-  min-height: 100vh; /* Минимальная высота равная высоте окна браузера */
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  min-height: 100vh;
 }
-
-/* Медиа-запросы */
 
 @media screen and (max-width: 1240px) {
   .container {
-    padding: 0 20px; /* Добавляем отступы по бокам при уменьшении экрана */
+    padding: 0 20px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    padding: 0 10px; /* Добавляем отступы по бокам при уменьшении экрана */
+    padding: 0 10px;
   }
   body {
-    font-size: 14px; /* Уменьшаем размер шрифта на более маленьких экранах */
+    font-size: 14px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .container {
-    padding: 0 2px; /* Добавляем отступы по бокам при уменьшении экрана */
+    padding: 0 2px;
   }
 
   body {
-    font-size: 12px; /* Дополнительно уменьшаем размер шрифта на очень маленьких экранах */
+    font-size: 12px;
   }
 }

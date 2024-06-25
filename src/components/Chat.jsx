@@ -49,19 +49,9 @@ const Chat = () => {
 
     socket.emit("sendMessage", { message, params });
     setMessage("");
-
-    if (params.name === message.sender) {
-      scrollToBottom();
-    }
   };
   const onEmojiClick = ({ emoji }) => {
     setMessage(`${message} ${emoji}`);
-  };
-  const scrollToBottom = () => {
-    const messagesContainer = document.getElementById("messages-container");
-    if (messagesContainer) {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
   };
 
   return (

@@ -15,9 +15,9 @@
   border-radius: 12px;
   font-size: 15px;
   color: #fff;
-  word-wrap: break-word; /* Переносим слова внутри текста */
-  overflow-wrap: break-word; /* Добавлено для поддержки старых версий IE */
-  max-width: 100%; /* Сообщение не будет превышать ширину контейнера */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .user {

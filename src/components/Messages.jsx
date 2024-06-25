@@ -30,7 +30,7 @@ const Messages = ({ messages, name }) => {
           </div>
         );
       })}
-      <div ref={messagesEndRef}></div> {/* Реф для прокрутки */}
+      <div ref={messagesEndRef}></div>
     </div>
   );
 };
